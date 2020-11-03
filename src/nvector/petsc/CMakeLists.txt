@@ -52,7 +52,7 @@ if(BUILD_STATIC_LIBS)
                         OUTPUT_NAME sundials_nvecpetsc
                         CLEAN_DIRECT_OUTPUT 1)
 
-  install(TARGETS sundials_nvecpetsc_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecpetsc_static)
 endif(BUILD_STATIC_LIBS)
 
 #
@@ -71,7 +71,7 @@ if(BUILD_SHARED_LIBS)
                         VERSION ${nveclib_VERSION}
                         SOVERSION ${nveclib_SOVERSION})
 
-  install(TARGETS sundials_nvecpetsc_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecpetsc_shared)
 endif(BUILD_SHARED_LIBS)
 
 # Install the NVECPARHYP header files

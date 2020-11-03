@@ -116,6 +116,15 @@ macro(EXAMPLES2STRING example_list example_string)
   list2string(tmp_list ${example_string})
 endmacro(EXAMPLES2STRING)
 
+# Installs and exports the target NAME. Also sets the global variable
+# `SUNDIALS_EXPORT_TARGETS` to keep track of the created targets in
+# order to `include` them in the CMake config file
+macro(sundials_target_install NAME)
+    install(TARGETS ${NAME} EXPORT sundials-targets DESTINATION "${CMAKE_INSTALL_LIBDIR}")
+    set(SUNDIALS_EXPORT_TARGETS "${SUNDIALS_EXPORT_TARGETS};${NAME}"
+      CACHE INTERNAL "List of SUNDIALS targets that can be exported" FORCE)
+endmacro()
+
 # Macros from other files
 include(SundialsAddF2003InterfaceLibrary)
 include(SundialsAddTest)

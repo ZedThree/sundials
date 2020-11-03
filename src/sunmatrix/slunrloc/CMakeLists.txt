@@ -60,8 +60,8 @@ if(BUILD_STATIC_LIBS)
   target_compile_definitions(sundials_sunmatrixslunrloc_static
     PUBLIC -DBUILD_SUNDIALS_LIBRARY)
 
-  install(TARGETS sundials_sunmatrixslunrloc_static
-    DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunmatrixslunrloc_static)
+
 endif(BUILD_STATIC_LIBS)
 
 # Rules for building and installing the shared library:
@@ -88,8 +88,8 @@ if(BUILD_SHARED_LIBS)
   target_compile_definitions(sundials_sunmatrixslunrloc_shared
     PUBLIC -DBUILD_SUNDIALS_LIBRARY)
 
-  install(TARGETS sundials_sunmatrixslunrloc_shared
-    DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunmatrixslunrloc_shared)
+
 endif(BUILD_SHARED_LIBS)
 
 # Install the sunmatrixslunrloc header files

@@ -47,7 +47,7 @@ if(BUILD_STATIC_LIBS)
   set_target_properties(sundials_sunmatrixcusparse_static PROPERTIES
                         OUTPUT_NAME sundials_sunmatrixcusparse
                         CLEAN_DIRECT_OUTPUT 1)
-  install(TARGETS sundials_sunmatrixcusparse_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunmatrixcusparse_static)
 endif(BUILD_STATIC_LIBS)
 
 if(BUILD_SHARED_LIBS)
@@ -65,7 +65,7 @@ if(BUILD_SHARED_LIBS)
                         CLEAN_DIRECT_OUTPUT 1
                         VERSION ${sunmatrixlib_VERSION}
                         SOVERSION ${sunmatrixlib_SOVERSION})
-  install(TARGETS sundials_sunmatrixcusparse_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunmatrixcusparse_shared)
 endif(BUILD_SHARED_LIBS)
 
 # Install the CUDA NVector header files

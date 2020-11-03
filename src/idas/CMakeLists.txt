@@ -115,7 +115,7 @@ if(BUILD_STATIC_LIBS)
     PROPERTIES OUTPUT_NAME sundials_idas CLEAN_DIRECT_OUTPUT 1)
 
   # Install the IDA library
-  install(TARGETS sundials_idas_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_idas_static)
 
 endif(BUILD_STATIC_LIBS)
 
@@ -140,7 +140,7 @@ if(BUILD_SHARED_LIBS)
     PROPERTIES VERSION ${idaslib_VERSION} SOVERSION ${idaslib_SOVERSION})
 
   # Install the IDAS library
-  install(TARGETS sundials_idas_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_idas_shared)
 
 endif(BUILD_SHARED_LIBS)
 

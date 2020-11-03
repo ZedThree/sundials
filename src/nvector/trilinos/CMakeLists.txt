@@ -58,7 +58,7 @@ if(BUILD_STATIC_LIBS)
                         OUTPUT_NAME sundials_nvectrilinos
                         CLEAN_DIRECT_OUTPUT 1)
 
-  install(TARGETS sundials_nvectrilinos_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvectrilinos_static)
 endif(BUILD_STATIC_LIBS)
 
 # Rules for building and installing the shared library:
@@ -81,7 +81,7 @@ if(BUILD_SHARED_LIBS)
                         VERSION ${nveclib_VERSION}
                         SOVERSION ${nveclib_SOVERSION})
 
-  install(TARGETS sundials_nvectrilinos_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvectrilinos_shared)
 endif(BUILD_SHARED_LIBS)
 
 # Install the NVECTRILINOS header files

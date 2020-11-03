@@ -120,7 +120,7 @@ if(BUILD_STATIC_LIBS)
     PROPERTIES OUTPUT_NAME sundials_cvodes CLEAN_DIRECT_OUTPUT 1)
 
   # Install the CVODES library
-  install(TARGETS sundials_cvodes_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_cvodes_static)
 
 endif(BUILD_STATIC_LIBS)
 
@@ -145,7 +145,7 @@ if(BUILD_SHARED_LIBS)
     PROPERTIES VERSION ${cvodeslib_VERSION} SOVERSION ${cvodeslib_SOVERSION})
 
   # Install the CVODES library
-  install(TARGETS sundials_cvodes_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_cvodes_shared)
 
 endif(BUILD_SHARED_LIBS)
 

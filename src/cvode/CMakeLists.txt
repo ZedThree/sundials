@@ -136,10 +136,10 @@ if(BUILD_STATIC_LIBS)
     PROPERTIES OUTPUT_NAME sundials_cvode CLEAN_DIRECT_OUTPUT 1)
 
   # Install the CVODE library
-  install(TARGETS sundials_cvode_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_cvode_static)
   if(SUNDIALS_BUILD_PACKAGE_FUSED_KERNELS)
-    install(TARGETS sundials_cvode_fused_cuda_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
-    install(TARGETS sundials_cvode_fused_stubs_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_cvode_fused_cuda_static)
+    sundials_target_install(sundials_cvode_fused_stubs_static)
   endif()
 
 endif(BUILD_STATIC_LIBS)
@@ -181,10 +181,10 @@ if(BUILD_SHARED_LIBS)
     PROPERTIES VERSION ${cvodelib_VERSION} SOVERSION ${cvodelib_SOVERSION})
 
   # Install the CVODE library
-  install(TARGETS sundials_cvode_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_cvode_shared)
   if(SUNDIALS_BUILD_PACKAGE_FUSED_KERNELS)
-    install(TARGETS sundials_cvode_fused_cuda_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
-    install(TARGETS sundials_cvode_fused_stubs_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_cvode_fused_cuda_shared)
+    sundials_target_install(sundials_cvode_fused_stubs_shared)
   endif()
 
 endif(BUILD_SHARED_LIBS)

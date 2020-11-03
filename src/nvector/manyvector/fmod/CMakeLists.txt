@@ -39,7 +39,7 @@ if(BUILD_STATIC_LIBS)
   set_target_properties(sundials_fnvecmanyvector_mod_static PROPERTIES
                         OUTPUT_NAME sundials_fnvecmanyvector_mod
                         CLEAN_DIRECT_OUTPUT 1)
-  install(TARGETS sundials_fnvecmanyvector_mod_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_fnvecmanyvector_mod_static)
 
   # ----------------------- With MPI
   if(MPI_ENABLE AND MPI_C_FOUND)
@@ -49,7 +49,7 @@ if(BUILD_STATIC_LIBS)
     set_target_properties(sundials_fnvecmpimanyvector_mod_static PROPERTIES
                           OUTPUT_NAME sundials_fnvecmpimanyvector_mod
                           CLEAN_DIRECT_OUTPUT 1)
-    install(TARGETS sundials_fnvecmpimanyvector_mod_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fnvecmpimanyvector_mod_static)
   endif()
 endif(BUILD_STATIC_LIBS)
 
@@ -63,7 +63,7 @@ if(BUILD_SHARED_LIBS)
                         CLEAN_DIRECT_OUTPUT 1
                         VERSION ${nveclib_VERSION}
                         SOVERSION ${nveclib_SOVERSION})
-  install(TARGETS sundials_fnvecmanyvector_mod_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_fnvecmanyvector_mod_shared)
 
   # ----------------------- With MPI
   if(MPI_ENABLE AND MPI_C_FOUND)
@@ -73,7 +73,7 @@ if(BUILD_SHARED_LIBS)
     set_target_properties(sundials_fnvecmpimanyvector_mod_shared PROPERTIES
                           OUTPUT_NAME sundials_fnvecmpimanyvector_mod
                           CLEAN_DIRECT_OUTPUT 1)
-    install(TARGETS sundials_fnvecmpimanyvector_mod_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fnvecmpimanyvector_mod_shared)
   endif()
 endif(BUILD_SHARED_LIBS)
 

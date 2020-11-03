@@ -1170,3 +1170,47 @@ install(
   FILES ${PROJECT_SOURCE_DIR}/NOTICE
   DESTINATION include/sundials
   )
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+  SUNDIALSConfigVersion.cmake
+  VERSION ${PACKAGE_VERSION}
+  COMPATIBILITY SameMajorVersion
+  )
+
+get_property(sundials_targets GLOBAL PROPERTY SUNDIALS_TARGETS)
+set(SUNDIALS_TARGETS "${sundials_targets}")
+configure_package_config_file(config/SUNDIALSConfig.cmake.in SUNDIALSConfig.cmake
+  INSTALL_DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/SUNDIALSConfig.cmake"
+  )
+install(
+  FILES
+      "${CMAKE_CURRENT_BINARY_DIR}/SUNDIALSConfig.cmake"
+      "${CMAKE_CURRENT_BINARY_DIR}/SUNDIALSConfigVersion.cmake"
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/CorrectWindowsPaths.cmake"
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/FindHypre.cmake"
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/FindKLU.cmake"
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/FindPETSC.cmake"
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/FindPackageMultipass.cmake"
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/FindSUPERLUDIST.cmake"
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/FindSUPERLUMT.cmake"
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/FindTrilinos.cmake"
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/ResolveCompilerPaths.cmake"
+  DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/SUNDIALS"
+  )
+
+install(
+  EXPORT
+    sundials-targets
+  NAMESPACE
+    SUNDIALS::
+  DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/SUNDIALS"
+  )
+export(
+  EXPORT
+    sundials-targets
+  NAMESPACE
+    SUNDIALS::
+  FILE
+    "${CMAKE_CURRENT_BINARY_DIR}/sundials-targets.cmake"
+  )

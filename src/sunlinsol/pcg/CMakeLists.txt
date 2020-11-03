@@ -55,8 +55,8 @@ if(BUILD_STATIC_LIBS)
   target_compile_definitions(sundials_sunlinsolpcg_static
     PUBLIC -DBUILD_SUNDIALS_LIBRARY)
 
-  install(TARGETS sundials_sunlinsolpcg_static
-    DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunlinsolpcg_static)
+
 
 endif(BUILD_STATIC_LIBS)
 
@@ -88,8 +88,8 @@ if(BUILD_SHARED_LIBS)
   target_compile_definitions(sundials_sunlinsolpcg_shared
     PUBLIC -DBUILD_SUNDIALS_LIBRARY)
 
-  install(TARGETS sundials_sunlinsolpcg_shared
-    DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunlinsolpcg_shared)
+
 
 endif(BUILD_SHARED_LIBS)
 
@@ -116,8 +116,8 @@ if(F77_INTERFACE_ENABLE AND F77_FOUND)
       PUBLIC
       sundials_fnvecserial_static
       sundials_sunlinsolpcg_static)
-    install(TARGETS sundials_fsunlinsolpcg_static
-      DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fsunlinsolpcg_static)
+
   endif(BUILD_STATIC_LIBS)
 
   if(BUILD_SHARED_LIBS)
@@ -134,8 +134,8 @@ if(F77_INTERFACE_ENABLE AND F77_FOUND)
       PUBLIC
       sundials_fnvecserial_shared
       sundials_sunlinsolpcg_shared)
-    install(TARGETS sundials_fsunlinsolpcg_shared
-      DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fsunlinsolpcg_shared)
+
   endif(BUILD_SHARED_LIBS)
 
   #

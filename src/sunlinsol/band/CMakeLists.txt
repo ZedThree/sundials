@@ -49,8 +49,7 @@ if(BUILD_STATIC_LIBS)
   target_compile_definitions(sundials_sunlinsolband_static
     PUBLIC -DBUILD_SUNDIALS_LIBRARY)
 
-  install(TARGETS sundials_sunlinsolband_static
-    DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunlinsolband_static)
 
 endif(BUILD_STATIC_LIBS)
 
@@ -78,8 +77,7 @@ if(BUILD_SHARED_LIBS)
   target_compile_definitions(sundials_sunlinsolband_shared
     PUBLIC -DBUILD_SUNDIALS_LIBRARY)
 
-  install(TARGETS sundials_sunlinsolband_shared
-    DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunlinsolband_shared)
 
 endif(BUILD_SHARED_LIBS)
 
@@ -107,8 +105,7 @@ if(F77_INTERFACE_ENABLE AND F77_FOUND)
       sundials_fnvecserial_static
       sundials_fsunmatrixband_static
       sundials_sunlinsolband_static)
-    install(TARGETS sundials_fsunlinsolband_static
-      DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fsunlinsolband_static)
   endif(BUILD_STATIC_LIBS)
 
   if(BUILD_SHARED_LIBS)
@@ -126,8 +123,7 @@ if(F77_INTERFACE_ENABLE AND F77_FOUND)
       sundials_fnvecserial_shared
       sundials_fsunmatrixband_shared
       sundials_sunlinsolband_shared)
-    install(TARGETS sundials_fsunlinsolband_shared
-      DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fsunlinsolband_shared)
   endif(BUILD_SHARED_LIBS)
 
   #

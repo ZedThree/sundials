@@ -38,7 +38,7 @@ if(BUILD_STATIC_LIBS)
     set_target_properties(sundials_fnvecmpiplusx_mod_static PROPERTIES
                           OUTPUT_NAME sundials_fnvecmpiplusx_mod
                           CLEAN_DIRECT_OUTPUT 1)
-    install(TARGETS sundials_fnvecmpiplusx_mod_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fnvecmpiplusx_mod_static)
   endif()
 endif(BUILD_STATIC_LIBS)
 
@@ -50,7 +50,7 @@ if(BUILD_SHARED_LIBS)
     set_target_properties(sundials_fnvecmpiplusx_mod_shared PROPERTIES
                           OUTPUT_NAME sundials_fnvecmpiplusx_mod
                           CLEAN_DIRECT_OUTPUT 1)
-    install(TARGETS sundials_fnvecmpiplusx_mod_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fnvecmpiplusx_mod_shared)
   endif()
 endif(BUILD_SHARED_LIBS)
 

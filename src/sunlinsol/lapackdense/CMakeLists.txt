@@ -48,8 +48,8 @@ if(BUILD_STATIC_LIBS)
   target_compile_definitions(sundials_sunlinsollapackdense_static
     PUBLIC -DBUILD_SUNDIALS_LIBRARY)
 
-  install(TARGETS sundials_sunlinsollapackdense_static
-    DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunlinsollapackdense_static)
+
 
 endif(BUILD_STATIC_LIBS)
 
@@ -77,8 +77,8 @@ if(BUILD_SHARED_LIBS)
   target_compile_definitions(sundials_sunlinsollapackdense_shared
     PUBLIC -DBUILD_SUNDIALS_LIBRARY)
 
-  install(TARGETS sundials_sunlinsollapackdense_shared
-    DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunlinsollapackdense_shared)
+
 
 endif(BUILD_SHARED_LIBS)
 
@@ -106,8 +106,8 @@ if(F77_INTERFACE_ENABLE AND F77_FOUND)
       sundials_fnvecserial_static
       sundials_fsunmatrixdense_static
       sundials_sunlinsollapackdense_static)
-    install(TARGETS sundials_fsunlinsollapackdense_static
-      DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fsunlinsollapackdense_static)
+
   endif(BUILD_STATIC_LIBS)
 
   if(BUILD_SHARED_LIBS)
@@ -125,8 +125,8 @@ if(F77_INTERFACE_ENABLE AND F77_FOUND)
       sundials_fnvecserial_shared
       sundials_fsunmatrixdense_shared
       sundials_sunlinsollapackdense_shared)
-    install(TARGETS sundials_fsunlinsollapackdense_shared
-      DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fsunlinsollapackdense_shared)
+
   endif(BUILD_SHARED_LIBS)
 
   #

@@ -23,7 +23,7 @@ if(BUILD_STATIC_LIBS)
   set_target_properties(sundials_fnvecserial_mod_static PROPERTIES
                         OUTPUT_NAME sundials_fnvecserial_mod
                         CLEAN_DIRECT_OUTPUT 1)
-  install(TARGETS sundials_fnvecserial_mod_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_fnvecserial_mod_static)
 endif(BUILD_STATIC_LIBS)
 
 if(BUILD_SHARED_LIBS)
@@ -35,7 +35,7 @@ if(BUILD_SHARED_LIBS)
                         CLEAN_DIRECT_OUTPUT 1
                         VERSION ${nveclib_VERSION}
                         SOVERSION ${nveclib_SOVERSION})
-  install(TARGETS sundials_fnvecserial_mod_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_fnvecserial_mod_shared)
 endif(BUILD_SHARED_LIBS)
 
 message(STATUS "Added NVECTOR_SERIAL F2003 interface")

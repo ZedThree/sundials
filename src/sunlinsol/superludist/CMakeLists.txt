@@ -57,8 +57,8 @@ if(BUILD_STATIC_LIBS)
   target_compile_definitions(sundials_sunlinsolsuperludist_static
     PUBLIC -DBUILD_SUNDIALS_LIBRARY)
 
-  install(TARGETS sundials_sunlinsolsuperludist_static
-    DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunlinsolsuperludist_static)
+
 
 endif(BUILD_STATIC_LIBS)
 
@@ -91,8 +91,8 @@ if(BUILD_SHARED_LIBS)
   target_compile_definitions(sundials_sunlinsolsuperludist_shared
     PUBLIC -DBUILD_SUNDIALS_LIBRARY)
 
-  install(TARGETS sundials_sunlinsolsuperludist_shared
-    DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunlinsolsuperludist_shared)
+
 
 endif(BUILD_SHARED_LIBS)
 

@@ -49,7 +49,7 @@ if(BUILD_STATIC_LIBS)
   set_target_properties(sundials_nveccudaraja_static PROPERTIES
                         OUTPUT_NAME sundials_nveccudaraja
                         CLEAN_DIRECT_OUTPUT 1)
-  install(TARGETS sundials_nveccudaraja_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nveccudaraja_static)
 endif(BUILD_STATIC_LIBS)
 
 # Rules for building and installing the shared library:
@@ -68,7 +68,7 @@ if(BUILD_SHARED_LIBS)
                         CLEAN_DIRECT_OUTPUT 1
                         VERSION ${nveclib_VERSION}
                         SOVERSION ${nveclib_SOVERSION})
-  install(TARGETS sundials_nveccudaraja_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nveccudaraja_shared)
 endif(BUILD_SHARED_LIBS)
 
 # Install the NVECRAJA header files

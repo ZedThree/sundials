@@ -67,7 +67,7 @@ if(BUILD_STATIC_LIBS)
                         OUTPUT_NAME sundials_nvecmpiplusx
                         CLEAN_DIRECT_OUTPUT 1)
 
-  install(TARGETS sundials_nvecmpiplusx_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecmpiplusx_static)
 endif(BUILD_STATIC_LIBS)
 
 # Rules for building and installing the shared library:
@@ -88,7 +88,7 @@ if(BUILD_SHARED_LIBS)
                         SOVERSION ${nveclib_SOVERSION}
                         CLEAN_DIRECT_OUTPUT 1)
 
-  install(TARGETS sundials_nvecmpiplusx_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecmpiplusx_shared)
 endif(BUILD_SHARED_LIBS)
 
 # Install the NVECMPIPLUSX header files

@@ -24,7 +24,7 @@ if(BUILD_STATIC_LIBS)
   add_dependencies(sundials_fsunnonlinsolnewton_mod_static_obj sundials_fgeneric_static_obj)
   set_target_properties(sundials_fsunnonlinsolnewton_mod_static
     PROPERTIES OUTPUT_NAME sundials_fsunnonlinsolnewton_mod CLEAN_DIRECT_OUTPUT 1)
-  install(TARGETS sundials_fsunnonlinsolnewton_mod_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_fsunnonlinsolnewton_mod_static)
 endif(BUILD_STATIC_LIBS)
 
 if(BUILD_SHARED_LIBS)
@@ -36,7 +36,7 @@ if(BUILD_SHARED_LIBS)
     PROPERTIES OUTPUT_NAME sundials_fsunnonlinsolnewton_mod CLEAN_DIRECT_OUTPUT 1)
   set_target_properties(sundials_fsunnonlinsolnewton_mod_shared
     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
-  install(TARGETS sundials_fsunnonlinsolnewton_mod_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_fsunnonlinsolnewton_mod_shared)
 endif(BUILD_SHARED_LIBS)
 
 message(STATUS "Added SUNNONLINSOL_NEWTON F2003 interface")

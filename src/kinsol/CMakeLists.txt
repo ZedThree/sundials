@@ -101,7 +101,7 @@ if(BUILD_STATIC_LIBS)
     PROPERTIES OUTPUT_NAME sundials_kinsol CLEAN_DIRECT_OUTPUT 1)
 
   # Install the KINSOL library
-  install(TARGETS sundials_kinsol_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_kinsol_static)
 
 endif(BUILD_STATIC_LIBS)
 
@@ -125,7 +125,7 @@ if(BUILD_SHARED_LIBS)
     PROPERTIES VERSION ${kinsollib_VERSION} SOVERSION ${kinsollib_SOVERSION})
 
   # Install the KINSOL library
-  install(TARGETS sundials_kinsol_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_kinsol_shared)
 
 endif(BUILD_SHARED_LIBS)
 

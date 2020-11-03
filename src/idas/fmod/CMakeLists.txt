@@ -46,7 +46,7 @@ if(BUILD_STATIC_LIBS)
     PROPERTIES OUTPUT_NAME sundials_fidas_mod CLEAN_DIRECT_OUTPUT 1)
 
   # install the library
-  install(TARGETS sundials_fidas_mod_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_fidas_mod_static)
 
   # install the idas mod file from here since it won't go into the
   # top level fortran mod file directory
@@ -88,7 +88,7 @@ if(BUILD_SHARED_LIBS)
                         SOVERSION ${idaslib_SOVERSION})
 
   # install the library
-  install(TARGETS sundials_fidas_mod_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_fidas_mod_shared)
 
   # install the idas mod file from here since it won't go into the
   # top level fortran mod file directory

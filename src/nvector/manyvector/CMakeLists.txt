@@ -67,7 +67,7 @@ if(BUILD_STATIC_LIBS)
                         OUTPUT_NAME sundials_nvecmanyvector
                         CLEAN_DIRECT_OUTPUT 1)
 
-  install(TARGETS sundials_nvecmanyvector_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecmanyvector_static)
 
   # ----------------------- With MPI
   if(MPI_ENABLE AND MPI_C_FOUND)
@@ -79,7 +79,7 @@ if(BUILD_STATIC_LIBS)
                           OUTPUT_NAME sundials_nvecmpimanyvector
                           CLEAN_DIRECT_OUTPUT 1)
 
-    install(TARGETS sundials_nvecmpimanyvector_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_nvecmpimanyvector_static)
   endif()
 
 endif(BUILD_STATIC_LIBS)
@@ -106,7 +106,7 @@ if(BUILD_SHARED_LIBS)
                         SOVERSION ${nveclib_SOVERSION}
                         CLEAN_DIRECT_OUTPUT 1)
 
-  install(TARGETS sundials_nvecmanyvector_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecmanyvector_shared)
 
   # ----------------------- With MPI
   if(MPI_ENABLE AND MPI_C_FOUND)
@@ -124,7 +124,7 @@ if(BUILD_SHARED_LIBS)
                           SOVERSION ${nveclib_SOVERSION}
                           CLEAN_DIRECT_OUTPUT 1)
 
-    install(TARGETS sundials_nvecmpimanyvector_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_nvecmpimanyvector_shared)
   endif()
 
 endif(BUILD_SHARED_LIBS)

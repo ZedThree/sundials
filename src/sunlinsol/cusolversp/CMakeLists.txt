@@ -46,7 +46,7 @@ if(BUILD_STATIC_LIBS)
   set_target_properties(sundials_sunlinsolcusolversp_static PROPERTIES
                         OUTPUT_NAME sundials_sunlinsolcusolversp
                         CLEAN_DIRECT_OUTPUT 1)
-  install(TARGETS sundials_sunlinsolcusolversp_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunlinsolcusolversp_static)
 endif(BUILD_STATIC_LIBS)
 
 if(BUILD_SHARED_LIBS)
@@ -65,7 +65,7 @@ if(BUILD_SHARED_LIBS)
                         CLEAN_DIRECT_OUTPUT 1
                         VERSION ${sunlinsollib_VERSION}
                         SOVERSION ${sunlinsollib_SOVERSION})
-  install(TARGETS sundials_sunlinsolcusolversp_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunlinsolcusolversp_shared)
 endif(BUILD_SHARED_LIBS)
 
 # Install the CUDA NVector header files

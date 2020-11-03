@@ -50,7 +50,7 @@ if(BUILD_STATIC_LIBS)
   add_library(sundials_nvecopenmpdev_static STATIC ${nvecopenmpdev_SOURCES} ${shared_SOURCES})
   set_target_properties(sundials_nvecopenmpdev_static
     PROPERTIES OUTPUT_NAME sundials_nvecopenmpdev CLEAN_DIRECT_OUTPUT 1)
-  install(TARGETS sundials_nvecopenmpdev_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecopenmpdev_static)
 endif()
 
 # Rules for building and installing the shared library:
@@ -69,7 +69,7 @@ if(BUILD_SHARED_LIBS)
     PROPERTIES OUTPUT_NAME sundials_nvecopenmpdev CLEAN_DIRECT_OUTPUT 1)
   set_target_properties(sundials_nvecopenmpdev_shared
     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
-  install(TARGETS sundials_nvecopenmpdev_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecopenmpdev_shared)
 
 endif()
 

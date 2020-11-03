@@ -47,7 +47,7 @@ if(BUILD_STATIC_LIBS)
     PROPERTIES OUTPUT_NAME sundials_fcvode_mod CLEAN_DIRECT_OUTPUT 1)
 
   # install the library
-  install(TARGETS sundials_fcvode_mod_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_fcvode_mod_static)
 
   # install the cvode mod file from here since it won't go into the
   # top level fortran mod file directory
@@ -89,7 +89,7 @@ if(BUILD_SHARED_LIBS)
                         SOVERSION ${cvodelib_SOVERSION})
 
   # install the library
-  install(TARGETS sundials_fcvode_mod_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_fcvode_mod_shared)
 
   # install the cvode mod file from here since it won't go into the
   # top level fortran mod file directory

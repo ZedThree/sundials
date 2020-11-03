@@ -56,7 +56,7 @@ if(BUILD_STATIC_LIBS)
   add_library(sundials_nvecopenmp_static STATIC ${nvecopenmp_SOURCES} ${shared_SOURCES})
   set_target_properties(sundials_nvecopenmp_static
     PROPERTIES OUTPUT_NAME sundials_nvecopenmp CLEAN_DIRECT_OUTPUT 1)
-  install(TARGETS sundials_nvecopenmp_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecopenmp_static)
 endif(BUILD_STATIC_LIBS)
 
 # Rules for building and installing the shared library:
@@ -75,7 +75,7 @@ if(BUILD_SHARED_LIBS)
     PROPERTIES OUTPUT_NAME sundials_nvecopenmp CLEAN_DIRECT_OUTPUT 1)
   set_target_properties(sundials_nvecopenmp_shared
     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
-  install(TARGETS sundials_nvecopenmp_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecopenmp_shared)
 endif(BUILD_SHARED_LIBS)
 
 # Install the NVECOPENMP header files
@@ -89,7 +89,7 @@ if(F77_INTERFACE_ENABLE AND F77_FOUND)
     add_library(sundials_fnvecopenmp_static STATIC ${fnvecopenmp_SOURCES})
     set_target_properties(sundials_fnvecopenmp_static
       PROPERTIES OUTPUT_NAME sundials_fnvecopenmp CLEAN_DIRECT_OUTPUT 1)
-    install(TARGETS sundials_fnvecopenmp_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fnvecopenmp_static)
   endif(BUILD_STATIC_LIBS)
 
   if(BUILD_SHARED_LIBS)
@@ -102,7 +102,7 @@ if(F77_INTERFACE_ENABLE AND F77_FOUND)
       PROPERTIES OUTPUT_NAME sundials_fnvecopenmp CLEAN_DIRECT_OUTPUT 1)
     set_target_properties(sundials_fnvecopenmp_shared
       PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
-    install(TARGETS sundials_fnvecopenmp_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fnvecopenmp_shared)
   endif(BUILD_SHARED_LIBS)
 
 endif(F77_INTERFACE_ENABLE AND F77_FOUND)

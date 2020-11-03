@@ -51,7 +51,7 @@ if(BUILD_STATIC_LIBS)
                         OUTPUT_NAME sundials_sunnonlinsolpetscsnes
                         CLEAN_DIRECT_OUTPUT 1)
 
-  install(TARGETS sundials_sunnonlinsolpetscsnes_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunnonlinsolpetscsnes_static)
 endif()
 
 if(BUILD_SHARED_LIBS)
@@ -70,7 +70,7 @@ if(BUILD_SHARED_LIBS)
                         VERSION ${sunnonlinsollib_VERSION}
                         SOVERSION ${sunnonlinsollib_SOVERSION})
 
-  install(TARGETS sundials_sunnonlinsolpetscsnes_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_sunnonlinsolpetscsnes_shared)
 endif()
 
 # Install the header files

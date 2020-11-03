@@ -50,7 +50,7 @@ if(BUILD_STATIC_LIBS)
   add_library(sundials_nvecserial_static STATIC ${nvecserial_SOURCES} ${shared_SOURCES})
   set_target_properties(sundials_nvecserial_static
     PROPERTIES OUTPUT_NAME sundials_nvecserial CLEAN_DIRECT_OUTPUT 1)
-  install(TARGETS sundials_nvecserial_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecserial_static)
 endif(BUILD_STATIC_LIBS)
 
 # Rules for building and installing the shared library:
@@ -69,7 +69,7 @@ if(BUILD_SHARED_LIBS)
     PROPERTIES OUTPUT_NAME sundials_nvecserial CLEAN_DIRECT_OUTPUT 1)
   set_target_properties(sundials_nvecserial_shared
     PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
-  install(TARGETS sundials_nvecserial_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_nvecserial_shared)
 endif(BUILD_SHARED_LIBS)
 
 # Install the NVECSERIAL header files
@@ -83,7 +83,7 @@ if(F77_INTERFACE_ENABLE AND F77_FOUND)
     add_library(sundials_fnvecserial_static STATIC ${fnvecserial_SOURCES})
     set_target_properties(sundials_fnvecserial_static
       PROPERTIES OUTPUT_NAME sundials_fnvecserial CLEAN_DIRECT_OUTPUT 1)
-    install(TARGETS sundials_fnvecserial_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fnvecserial_static)
   endif(BUILD_STATIC_LIBS)
 
   if(BUILD_SHARED_LIBS)
@@ -96,7 +96,7 @@ if(F77_INTERFACE_ENABLE AND F77_FOUND)
       PROPERTIES OUTPUT_NAME sundials_fnvecserial CLEAN_DIRECT_OUTPUT 1)
     set_target_properties(sundials_fnvecserial_shared
       PROPERTIES VERSION ${nveclib_VERSION} SOVERSION ${nveclib_SOVERSION})
-    install(TARGETS sundials_fnvecserial_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    sundials_target_install(sundials_fnvecserial_shared)
   endif(BUILD_SHARED_LIBS)
 
 endif(F77_INTERFACE_ENABLE AND F77_FOUND)

@@ -1,0 +1,247 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# If using the build directory directly, we need the CMake modules too
+if(EXISTS "@PROJECT_SOURCE_DIR@/cmake")
+  list(APPEND CMAKE_MODULE_PATH "@PROJECT_SOURCE_DIR@/cmake")
+endif()
+
+set(F77_INTERFACE_ENABLE @F77_INTERFACE_ENABLE@)
+set(F2003_INTERFACE_ENABLE @F2003_INTERFACE_ENABLE@)
+if (F77_INTERFACE_ENABLE OR F2003_INTERFACE_ENABLE)
+  enable_language(Fortran)
+  set(F77_MANGLE_MACRO1 @F77_MANGLE_MACRO1@)
+  set(F77_MANGLE_MACRO2 @F77_MANGLE_MACRO2@)
+endif()
+
+set(CUDA_ENABLE @CUDA_ENABLE@)
+if (CUDA_ENABLE)
+  enable_language(CUDA)
+  find_package(CUDA REQUIRED)
+endif()
+
+set(SUPERLUDIST_ENABLE @SUPERLUDIST_ENABLE@)
+if (${SUPERLUDIST_ENABLE})
+  set(SUPERLUDIST_INCLUDE_DIR @SUPERLUDIST_INCLUDE_DIR@)
+  set(SUPERLUDIST_LIBRARY_DIR @SUPERLUDIST_LIBRARY_DIR@)
+  set(SUPERLUDIST_LIBRARIES @SUPERLUDIST_LIBRARIES@)
+  set(SUPERLUDIST_OpenMP @SUPERLUDIST_OpenMP@)
+  include(SundialsSuperLUDIST)
+endif()
+
+set(SUPERLUMT_ENABLE @SUPERLUMT_ENABLE@)
+if (${SUPERLUMT_ENABLE})
+  set(SUPERLUMT_INCLUDE_DIR @SUPERLUMT_INCLUDE_DIR@)
+  set(SUPERLUMT_LIBRARY_DIR @SUPERLUMT_LIBRARY_DIR@)
+  set(SUPERLUMT_LIBRARIES @SUPERLUMT_LIBRARIES@)
+  set(SUPERLUMT_THREAD_TYPE @SUPERLUMT_THREAD_TYPE@)
+  include(SundialsSuperLUMT)
+endif()
+
+set(KLU_ENABLE @KLU_ENABLE@)
+if (${KLU_ENABLE})
+  find_dependency(KLU @KLU_VERSION@)
+endif()
+
+set(HYPRE_ENABLE @HYPRE_ENABLE@)
+if (${HYPRE_ENABLE})
+  find_dependency(Hypre)
+endif()
+
+set(PETSC_ENABLE @PETSC_ENABLE@)
+if (${PETSC_ENABLE})
+  if (EXISTS "@PETSC_DIR@")
+    set(PETSC_DIR @PETSC_DIR@)
+    set(PETSC_ARCH @PETSC_ARCH@)
+    set(PETSC_LIBRARIES @PETSC_LIBRARIES@)
+    set(PETSC_INCLUDES @PETSC_INCLUDES@)
+    set(PETSC_WORKS @PETSC_WORKS@)
+  endif()
+  find_dependency(PETSC @PETSC_VERSION@)
+endif()
+
+set(MPI_ENABLE @MPI_ENABLE@)
+if (MPI_ENABLE OR Trilinos_ENABLE OR SUPERLUDIST_ENABLE)
+  set(MPIEXEC_EXECUTABLE @MPIEXEC_EXECUTABLE@)
+  find_dependency(MPI @MPI_C_VERSION@ EXACT)
+endif()
+
+set(OPENMP_ENABLE @OPENMP_ENABLE@)
+set(OPENMP_DEVICE_ENABLE @OPENMP_DEVICE_ENABLE@)
+set(SKIP_OPENMP_DEVICE_CHECK @SKIP_OPENMP_DEVICE_CHECK@)
+if (OPENMP_ENABLE OR OPENMP_DEVICE_ENABLE OR
+    (SUPERLUDIST_ENABLE AND SUPERLUDIST_OpenMP))
+  find_dependency(OpenMP)
+endif()
+
+set(PTHREAD_ENABLE @PTHREAD_ENABLE@)
+if (PTHREAD_ENABLE)
+  find_dependency(Threads @Threads_VERSION@)
+endif()
+
+set(LAPACK_ENABLE @LAPACK_ENABLE@)
+if (LAPACK_ENABLE)
+  find_dependency(LAPACK @LAPACK_VERSION@)
+endif()
+
+set(Trilinos_ENABLE @Trilinos_ENABLE@)
+if(Trilinos_ENABLE)
+  if (EXISTS "@Trilinos_DIR@")
+    set(Trilinos_DIR "@Trilinos_DIR@")
+  endif()
+  find_dependency(Trilinos @Trilinos_VERSION@)
+endif(Trilinos_ENABLE)
+
+set(RAJA_ENABLE @RAJA_ENABLE@)
+if(RAJA_ENABLE)
+  if (EXISTS "@RAJA_DIR@")
+    set(RAJA_DIR "@RAJA_DIR@")
+  endif()
+  find_dependency(RAJA @RAJA_VERSION@)
+endif(RAJA_ENABLE)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}")
+
+set(SUNDIALS_VALID_COMPONENTS
+  sundials
+  nvector-serial
+  nvector-manyvector
+  nvector-parallel
+  nvector-mpiplusx
+  nvector-parhyp
+  nvector-openmp
+  nvector-openmpdev
+  nvector-pthreads
+  nvector-petsc
+  nvector-cuda
+  nvector-raja
+  nvector-trilinos
+  sunmatrix-band
+  sunmatrix-dense
+  sunmatrix-sparse
+  sunmatrix-slunrloc
+  sunmatrix-cusparse
+  sunlinsol-band
+  sunlinsol-dense
+  sunlinsol-pcg
+  sunlinsol-spbcgs
+  sunlinsol-spfgmr
+  sunlinsol-spgmr
+  sunlinsol-sptfqmr
+  sunlinsol-klu
+  sunlinsol-superludist
+  sunlinsol-superlumt
+  sunlinsol-lapackband
+  sunlinsol-lapackdense
+  sunlinsol-cusolversp
+  sunnonlinsol-newton
+  sunnonlinsol-fixedpoint
+  sunnonlinsol-petscsnes
+  arkode
+  cvode
+  cvodes
+  ida
+  idas
+  kinsol
+  cpodes
+  Fortran
+  Fortran77
+  C
+  shared
+  static
+  )
+
+set(SUNDIALS_EXPORT_TARGETS @SUNDIALS_EXPORT_TARGETS@)
+set(SUNDIALS_BUILD_ARKODE @BUILD_ARKODE@)
+set(SUNDIALS_BUILD_CVODE @BUILD_CVODE@)
+set(SUNDIALS_BUILD_CVODES @BUILD_CVODES@)
+set(SUNDIALS_BUILD_IDA @BUILD_IDA@)
+set(SUNDIALS_BUILD_IDAS @BUILD_IDAS@)
+set(SUNDIALS_BUILD_KINSOL @BUILD_KINSOL@)
+set(SUNDIALS_STATIC_LIBS @BUILD_STATIC_LIBS@)
+set(SUNDIALS_SHARED_LIBS @BUILD_SHARED_LIBS@)
+set(SUNDIALS_F77 @F77_INTERFACE_ENABLE@)
+set(SUNDIALS_F2003 @F2003_INTERFACE_ENABLE@)
+
+set(SUNDIALS_LINK_LIBRARY_TYPE)
+
+# If no components requested, try to find everything that was built
+if (NOT SUNDIALS_FIND_COMPONENTS)
+  set(SUNDIALS_FIND_COMPONENTS C sundials nvector-serial nvector-manyvector)
+
+  if (SUNDIALS_BUILD_ARKODE)
+    list(APPEND SUNDIALS_FIND_COMPONENTS arkode)
+  endif()
+
+  if (SUNDIALS_BUILD_CVODE)
+    list(APPEND SUNDIALS_FIND_COMPONENTS cvode)
+  endif()
+
+  if (SUNDIALS_BUILD_CVODES)
+    list(APPEND SUNDIALS_FIND_COMPONENTS cvodes)
+  endif()
+
+  if (SUNDIALS_BUILD_IDA)
+    list(APPEND SUNDIALS_FIND_COMPONENTS ida)
+  endif()
+
+  if (SUNDIALS_BUILD_IDAS)
+    list(APPEND SUNDIALS_FIND_COMPONENTS idas)
+  endif()
+
+  if (SUNDIALS_BUILD_KINSOL)
+    list(APPEND SUNDIALS_FIND_COMPONENTS kinsol)
+  endif()
+
+  if (SUNDIALS_F77)
+    list(APPEND SUNDIALS_FIND_COMPONENTS Fortran77)
+  endif()
+
+  if (SUNDIALS_F2003)
+    list(APPEND SUNDIALS_FIND_COMPONENTS Fortran)
+  endif()
+endif()
+
+list(REMOVE_DUPLICATES SUNDIALS_FIND_COMPONENTS)
+
+include("${CMAKE_CURRENT_LIST_DIR}/sundials-targets.cmake")
+
+# Set the link type from list of requested components: if both set, last one wins
+foreach (comp IN LISTS SUNDIALS_FIND_COMPONENTS)
+  if (comp STREQUAL "shared")
+    list (REMOVE_ITEM SUNDIALS_FIND_COMPONENTS ${comp})
+    set (SUNDIALS_LINK_LIBRARY_TYPE ${comp})
+  elseif (comp STREQUAL "static")
+    list (REMOVE_ITEM SUNDIALS_FIND_COMPONENTS ${comp})
+    set (SUNDIALS_LINK_LIBRARY_TYPE ${comp})
+  endif ()
+endforeach ()
+
+# Set link type if it wasn't requested
+if (NOT SUNDIALS_LINK_LIBRARY_TYPE)
+ if (SUNDIALS_BUILD_SHARED)
+    set(SUNDIALS_LINK_LIBRARY_TYPE shared)
+  else()
+    set(SUNDIALS_LINK_LIBRARY_TYPE static)
+  endif()
+endif()
+
+# Try to find all the requested components
+foreach (comp IN LISTS SUNDIALS_FIND_COMPONENTS)
+  if (NOT ${comp} IN_LIST SUNDIALS_VALID_COMPONENTS)
+    set(SUNDIALS_FOUND FALSE)
+    set(SUNDIALS_NOT_FOUND_MESSAGE "Unsupported component: ${comp}")
+    continue()
+  endif()
+  list (FIND SUNDIALS_EXPORT_TARGETS "sundials_${comp}_${SUNDIALS_LINK_LIBRARY_TYPE}" HAVE_COMP)
+  if (${HAVE_COMP} LESS 0)
+    set(SUNDIALS_${comp}_FOUND 0)
+    set(SUNDIALS_NOT_FOUND_MESSAGE "Could not find component: ${comp}")
+  else ()
+    set (SUNDIALS_${comp}_FOUND 1)
+    add_library(SUNDIALS::${comp} ALIAS SUNDIALS::sundials_${comp}_${SUNDIALS_LINK_LIBRARY_TYPE})
+  endif ()
+endforeach ()
+
+check_required_components(SUNDIALS)

@@ -125,7 +125,7 @@ if(BUILD_STATIC_LIBS)
     PROPERTIES OUTPUT_NAME sundials_arkode CLEAN_DIRECT_OUTPUT 1)
 
   # Install the ARKODE library
-  install(TARGETS sundials_arkode_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_arkode_static)
 
 endif(BUILD_STATIC_LIBS)
 
@@ -149,7 +149,7 @@ if(BUILD_SHARED_LIBS)
     PROPERTIES VERSION ${arkodelib_VERSION} SOVERSION ${arkodelib_SOVERSION})
 
   # Install the ARKODE library
-  install(TARGETS sundials_arkode_shared DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  sundials_target_install(sundials_arkode_shared)
 
 endif(BUILD_SHARED_LIBS)
 
